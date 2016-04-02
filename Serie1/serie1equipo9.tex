@@ -1,6 +1,8 @@
 \documentclass[10pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage{textcomp}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -44,29 +46,31 @@
 
 \section[Ejercicio 1]{Ejercicio 1}
 
-Obtenga una expresión en términos de funciones singulares la señal de tiempo continuo x(t) mostrada en la figura 1. Utilice la parábola $u_{-3}(t)$.\\
+Obtenga una expresión en términos de funciones singulares la señal de tiempo continuo x(t) mostrada en la figura 1.1. Utilice la parábola $u_{-3}(t)$.
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.6\textwidth]{SignalEjemplo}
+    \includegraphics[width=0.4\textwidth]{Ejercicio1/SignalEjemplo}
     \caption{Ejercicio 1}
     \label{fig:Ejercicio 1}
   \end{center}
 \end{figure}
 
-
+Al ver la señal podemos ver que esta formada por dos parábolas unitarias una de ellas invertida en el tiempo y ampliada por un factor de 2.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{SignalGraphic}
-\caption{Aproximaciones a la señal}
-\label{fig:SignalGraphic}
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{Ejercicio1/Aproximacion1}
+    \caption{Primer aproximación a la señal}
+    \label{fig:Primer aproximación a la señal}
+  \end{center}
 \end{figure}
 
+Vemos que esta señal se acerca a la mostrada en la \texttt{figura 1.1} pero debemos limitarla a los lados desde $ -1 $ hasta $ 2 $ esto podemos lograrlo con una función $ \Pi $ expandida 3 veces y retrasada media unidad (consideremos que la función $ \Pi $ expandida valdría $ 1 $ desde $ -1.5 $ hasta $ 1.5 $).
 
 \section{Ejercicio 2}
 Si x(t) es la que obtuvo en el Ejercicio 1, obtenga las siguientes señales:\\
-a) x(t/4)\\
+a) x(t/4)
 
 \begin{figure}[H]
 \centering
@@ -75,7 +79,7 @@ a) x(t/4)\\
 \label{fig:SignalA}
 \end{figure}
 
-b) x(2t-1/4)\\
+b) x(2t-1/4)
 
 \begin{figure}[H]
 \centering
@@ -84,7 +88,7 @@ b) x(2t-1/4)\\
 \label{fig:SignalB}
 \end{figure}
 
-c) x(-t/4-1)\\
+c) x(-t/4-1)
 
 \begin{figure}[H]
 \centering
@@ -93,7 +97,7 @@ c) x(-t/4-1)\\
 \label{fig:SignalC}
 \end{figure}
 
-d) x(t/4+1/4)\\
+d) x(t/4+1/4)
 
 \begin{figure}[H]
 \centering
@@ -123,37 +127,38 @@ Este no es el modelo de un sistema ya que no relaciona la entrada con la salida.
 \item  \begin{equation*}
 y(t)=sen(x(t+1))
 \end{equation*}
-* Lineal o no lineal\\
+* Lineal o no lineal
 
    x1(t) = y1(t)= sen (x1(t+1))\\
    x2(t) = y2(t)= sen (x2(t+1))\\
    x3(t) = x1(t)+x2(t) = y3(t)=sen(x3(t+1))\\
-                         y3(t)=sen(x1(t+1)+x2(t+1))\\
+                         y3(t)=sen(x1(t+1)+x2(t+1))
 
- NO LINEAL\\
+ NO LINEAL
 
-* Variante o invariante en el tiempo\\
+* Variante o invariante en el tiempo
 
   y(t-t0)=sen(x(t-t0+1)) ... A esto se debe llegar\\
   Proponer: x1(t)=x(t-t0) --- y1(t)=sen(x1(t+1))\\
-  y1(t)=sen(x(t+1-t0))\\
+  y1(t)=sen(x(t+1-t0))
 
-  INVARIANTE EN EL TIEMPO\\
+  INVARIANTE EN EL TIEMPO
 
-* Causalidad\\
+* Causalidad
 
 y(0)=sen(x(1))\\
 y(-1)=sen(x(0))\\
-y(1)=sen(x(2))\\
+y(1)=sen(x(2))
 
-NO CAUSAL O ANTICIPATIVO, porque depende de valores futuros. \\
+NO CAUSAL O ANTICIPATIVO, porque depende de valores futuros.
 
-* Memoria\\
+* Memoria
 
-CON MEMORIA, por que depende de valores futuros.\\
+CON MEMORIA, por que depende de valores futuros.
 
-* Estabilidad\\
-ESTABLE, ya que al probar con una señal como el escalón, la entrada y la salida es acotada.\\
+* Estabilidad
+
+ESTABLE, ya que al probar con una señal como el escalón, la entrada y la salida es acotada.
 
 \end{itemize}
 
@@ -166,9 +171,9 @@ y(t)=\int_{-\infty }^{\infty }[3\delta (t)+e^{-(t-1)}\delta (t)+cos(2\pi t)\dot{
 
 \begin{equation}
 y(t)=\int_{0}^{\infty }e^{-(t-1)}\delta (t+10)dt
-\end{equation}\\
+\end{equation}
 
-Para la primera ecuación tenemos que gracias a la propiedad de      linealidad podemos realizar esta descomposición:\\
+Para la primera ecuación tenemos que gracias a la propiedad de linealidad podemos realizar esta descomposición:
 
 \begin{equation}
 y(t)=3\int_{-\infty }^{\infty }\delta (t)dt+\int_{-\infty }^{\infty }e^{-(t-1)}\delta (t)dt+\int_{-\infty }^{\infty }cos(2\pi t)\dot{\delta (t)}dt+\int_{-\infty }^{\infty }e^{-t}\ddot{\delta}(t)dt
