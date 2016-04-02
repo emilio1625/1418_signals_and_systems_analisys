@@ -1,0 +1,74 @@
+\documentclass[a4paper,openright,12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb, amsmath, amsbsy} % simbolitos
+\usepackage{upgreek} % para poner letras griegas sin cursiva
+\usepackage{cancel} % para tachar
+\usepackage{mathdots} % para el comando \iddots
+\usepackage{mathrsfs} % para formato de letra
+\usepackage{stackrel} % para el comando \stackbin
+\usepackage{color}
+
+
+
+\begin{document}
+Ejercicio 9\\
+
+Conexión de sistemas en serie o cascada\\
+\begin{equation}
+S_{1}: y_{1}\left [ n \right ]=x_{1}\left [ n \right ]+2x_{1}\left [ n-1 \right ]
+\end{equation}
+\begin{equation}
+S_{2}: y_{2}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]
+\end{equation}\\
+
+S:\\
+\begin{equation}
+x_{2}\left [ n \right ]=y_{1}\left [ n \right ]=x_{1}\left [ n \right ]+2x_{1}\left [ n-1 \right ]
+\end{equation}
+\begin{equation}
+x_{2}\left [ n+2 \right ]=x_{1}\left [ n+2 \right ]+2x_{1}\left [ n+2-1 \right ]
+\end{equation}
+\begin{equation}
+3x_{2}\left [ n \right ]=3x_{1}\left [ n \right ]+(3)2x_{1}\left [ n-1 \right ]
+\end{equation}\\
+
+\begin{equation}
+y\left [ n \right ]=y_{2}\left [ n \right ]=x_{1}\left [ n+2 \right ]+2x_{1}\left [ n+1 \right ]+3x_{1}\left [ n \right ]+6x_{1}\left [ n-1 \right ]
+\end{equation}
+\begin{equation}
+y\left [ n \right ]=6x_{1}\left [ n-1 \right ]+3x_{1}\left [ n \right ]+2x_{1}\left [ n+1 \right ]+x_{1}\left [ n+2 \right ]
+\end{equation}\\
+
+Ahora sacaremos su sistema invertido\\
+\begin{equation}
+x_{1}\left [ n \right ]=y_{2}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]
+\end{equation}
+\begin{equation}
+x_{1}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]
+\end{equation}
+\begin{equation}
+2x_{1}\left [ n-1 \right ]=2x_{2}\left [ n-1+2 \right ]+(2)3x_{2}\left [ n-1 \right ]
+\end{equation}\\
+
+\begin{equation}
+x\left [ n \right ]=x_{2}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]+2x_{2}\left [ n+1 \right ]+6x_{2}\left [ n-1 \right ]
+\end{equation}
+\begin{equation}
+x\left [ n \right ]=6x_{2}\left [ n-1 \right ]+3x_{2}\left [ n \right ]+2x_{2}\left [ n+1 \right ]+x_{2}\left [ n+2 \right ]
+\end{equation}\\
+
+Vemos que el sistema normal e invertido da el mismo resultado.
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

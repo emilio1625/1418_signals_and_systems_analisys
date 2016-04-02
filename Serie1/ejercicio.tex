@@ -1,0 +1,96 @@
+\documentclass[a4paper,openright,12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb, amsmath, amsbsy} % simbolitos
+\usepackage{upgreek} % para poner letras griegas sin cursiva
+\usepackage{cancel} % para tachar
+\usepackage{mathdots} % para el comando \iddots
+\usepackage{mathrsfs} % para formato de letra
+\usepackage{stackrel} % para el comando \stackbin
+\usepackage{color}
+
+
+
+
+\begin{document}
+Ejercicio 5\\
+
+Evalúe las siguientes integrales:
+\begin{equation}
+y(t)=\int_{-\infty }^{\infty }[3\delta (t)+e^{-(t-1)}\delta (t)+cos(2\pi t)\dot{\delta} (t)+e^{-t}\ddot{\delta }(t) ]dt
+\end{equation}
+
+\begin{equation}
+y(t)=\int_{0}^{\infty }e^{-(t-1)}\delta (t+10)dt
+\end{equation}\\
+
+Para la primera ecuación tenemos que gracias a la propiedad de      linealidad podemos realizar esta descomposición:\\
+
+\begin{equation}
+y(t)=3\int_{-\infty }^{\infty }\delta (t)dt+\int_{-\infty }^{\infty }e^{-(t-1)}\delta (t)dt+\int_{-\infty }^{\infty }cos(2\pi t)\dot{\delta (t)}dt+\int_{-\infty }^{\infty }e^{-t}\ddot{\delta}(t)dt
+\end{equation}\\
+Sabiendo que la transformada de Laplace de delta de Dirac es:
+\begin{equation}
+L\left \{ \delta \left ( t \right ) \right \}=1 
+\end{equation}\\
+Y que:
+\begin{equation}
+L\left \{ f(t)\delta (t-a) \right \}=\int_{0 }^{\infty }e^{-st}f(t)\delta (t-a)dt=e^{-as}f(a)
+\end{equation}\\
+Basándonos en esos conceptos ya nos es posible operar\\
+Utilizando la transformada de Laplace
+\begin{equation}
+3L\left \{ \delta (t) \right \}=3\ast 1=3
+\end{equation}\\
+Aplicando la transformada al otro termino quedaría:
+\begin{equation}
+L\left \{ e^{-(t-1)}\delta (t) \right \}
+\end{equation}\\
+Ayudándonos de la ecuación numero 5 tenemos que a=0 por lo tanto:\\
+\begin{equation}
+e^{-as}\cdot f(a)=e^{-0s}\cdot e^{-(0-1)}=e^{o}\cdot e^{1}=1\cdot e=e
+\end{equation}\\
+
+Pasando al otro termino de la ecuación tendríamos:
+\begin{equation}
+L\left \{ cos(2\pi t)\dot{\delta }(t) \right \}
+\end{equation}\\
+La transformada de la derivada de la función impulso va a ser cero:
+\begin{equation}
+L\left \{ \dot{\delta }(t) \right \}=0
+\end{equation}\\
+Aplicando la ecuación numero 5 obtendremos:
+\begin{equation}
+0\cdot cos(2\pi (0))=0\cdot 1=0
+\end{equation}\\
+Para nuestro ultimo termino.\\
+La tranformada de la segunda derivada de la función impulso es cero:
+\begin{equation}
+L\left \{ \ddot{\delta }(t) \right \}=0
+\end{equation}\\
+Evaluando con base a la ecuación 5 tendremos:
+\begin{equation}
+0\cdot e^{-0}=0\cdot 1=0
+\end{equation}\\
+Por ultimo sumamos nuestros resultados y nos quedaría:
+\begin{equation}
+3+e+0+0=3+e
+\end{equation}\\
+Finalmente nuestro resultado es:
+\begin{equation}
+\underline{3+e}
+\end{equation}\\
+
+Para nuestra otra función integral tendremos que a=10:
+\begin{equation}
+\left [ e^{-10}\cdot e^{-(10-1)} \right ]=e^{-10}\cdot e^{-10}\approx 0.00000000206= 0
+\end{equation}\\
+Finalmente este es nuestro resultado:
+\begin{equation}
+\underline{0}
+\end{equation}\\
+
+
+
+
+\end{document}
