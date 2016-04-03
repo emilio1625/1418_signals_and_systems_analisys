@@ -93,7 +93,7 @@ Vemos que esta señal se acerca a la mostrada en la \texttt{figura 1.1} pero deb
             \right.
 \]
 
-Ésta señal debe ser expandida 3 veces y retrasada media unidad (consideremos que la función $\Pi$ expandida valdría $1$ desde $-1.5$ hasta $1.5$).
+Ésta señal debe ser expandida 3 veces y retrasada media unidad (consideremos que la función $\Pi$ expandida 3 veces  valdría $1$ desde $-1.5$ hasta $1.5$ y $0$ para cualquier otro valor).
 
 \begin{figure}[H]
   \begin{center}
@@ -119,7 +119,7 @@ Vemos que esta señal se acerca a la mostrada en la \texttt{figura 1.1} pero deb
 \end{figure}
 
 
-Código en matlab
+Código en matlab:
 
 \lstinputlisting{Ejercicio1/aprox2.m}
 
@@ -150,7 +150,7 @@ Ahora necesitamos generar el valor constante que toma la señal en sus extremos,
 
 Así la señal de la \texttt{figura 1.4b} es la señal expresada como funciones singulares.
 
-\[ x(t)=\lbrack2u_{-3}(-t)+u_{-3}(t)\rbrack\times\Pi\left(\frac{t-{\displaystyle\frac12}}3\right)-(\Pi(\frac{t-{\displaystyle\frac12}}3)-1) \] 
+\[ x(t) = \left[2u_{-3}\left(t\right)+u_{-3}\left(t\right)\right]\times\Pi\left(\frac{t-\frac{1}{2}}3\right)-\left(\Pi\left(\frac{t-\frac{1}{2}}3\right)-1\right) \] 
 
 Código en matlab:
 
@@ -159,7 +159,7 @@ function x = x1(t)
  x = ( ( 2*pu(-t) + pu(t) ) .* rect( (t.-0.5) ./ 3 ) ) .- ( rect( (t.-0.5) ./ 3 ) .- 1);
          
 t = -15 : 0.005 : 15;
-plot(t,x(t));
+plot(t,x1(t));
 axis([-3,3,0,2]);
 grid();
 xlabel("tiempo");
@@ -169,45 +169,75 @@ ylabel("x(t)");
 
 
 \section{Ejercicio 2}
-Si x(t) es la que obtuvo en el Ejercicio 1, obtenga las siguientes señales:\\
+Si $x\left(t\right)$ es la que obtuvo en el Ejercicio 1, obtenga las siguientes señales:
+
 \begin{enumerate}
-  \item x(t/4)\\
-Para esta gráfica la señal sufre una transformación en el tiempo, como el valor del coeficiente $\alpha$ de $t$ es igual a $\frac{1}{4}$, la señal se verá expandida en un factor inverso, es decir la veremos cuatro veces más ancha.
+  \item $x\left(\frac{t}{4}\right)$\\
+  \newline Para esta gráfica la señal sufre una transformación en el tiempo, como el valor del coeficiente $\alpha$ de $t$ es igual a $\frac{1}{4}$, la señal se verá expandida en un factor inverso, es decir, la veremos cuatro veces más ancha. Esto se notará más en los limites de la parábola, los cuales irán de -4 a 8. Las funciones siempre van a tener su valor mínimo en 0, para cualquier transformación en el tiempo, además, durante la transformación la función $\Pi(t)$ sigue cortando en el mismo rango a las parábolas, por lo que la amplitud no se ve modificada.
 
-% \begin{figure}
-%   \begin{center}
-%     \includegraphics{Ejercicio2/IncisoA}
-%     \caption{Señal expandida 4 veces}
-%     \label{fig:IncisoA}
-%   \end{center}
-% \end{figure}
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{Ejercicio2/IncisoA}
+        \caption{Señal expandida 4 veces}
+        \label{fig:IncisoA}
+      \end{center}
+    \end{figure}
+    
+Código en Matlab:
+    \lstinputlisting{Ejercicio2/incisoa.m}
 
-  \item x(2t-1/4)\\
-En esta nueva señal, la señal original es contraída 4 veces su ancho original y comienza en $ \frac{1}{4} $
+  \item $x\left(2t-1\right)$\\
+    \newline Para nueva señal, la señal original es contraída 2 veces su ancho original y adelantada en $\frac{1}{2}$ unidad. Esto lo podemos ver mejor si reescribimos la función anterior como $x\left(2\left(t-\frac{1}{2}\right)\right)$ De forma análoga al inciso anterior, la amplitud no se modifica.
 
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{Ejercicio2/IncisoB}
+        \caption{Señal contraída 2 veces}
+        \label{fig:IncisoB}
+      \end{center}
+    \end{figure}
+    
+Código en Matlab:
+    \lstinputlisting{Ejercicio2/incisob.m}
+    
+  \item $x\left(-\frac{t}{4}-1\right)$\\
+  \newline Si reescribimos esta señal como $x\left(-\frac{\left(t+4\right)}{4}\right)$ nos es más fácil ver que es una la señal retrasada 4 unidades, expandida 4 veces y luego invertida en el tiempo. Transformar la señal en este orden es equivalente a primero expandir la señal 4 veces y luego adelantarla 4 unidades. Nuevamente la amplitud no se ve afectada.
 
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{Ejercicio2/IncisoC}
+        \caption{Señal expandida 4 veces, invertida en el tiempo y retrasada 4 unidades}
+        \label{fig:IncisoC}
+      \end{center}
+    \end{figure}
+    
+Código en Matlab:
+    \lstinputlisting{Ejercicio2/incisoc.m}
+    \newpage
 
-  \item x(-t/4-1)
+  \item x(t/4+1/4)\\
+  \newline Nuevamente reescribamos la señal para ver de forma más clara el comportamiento que presenta: $x\left(\frac{-\left(t+1\right)}{4}\right)$. En esta nueva expresión podemos ver que la señal es retrasada 1 unidad y luego expandida 4 unidades. De nuevo, la amplitud original se conserva.
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{Ejercicio2/IncisoD}
+        \caption{Señal expandida 4 veces y retrasada 1 unidad}
+        \label{fig:IncisoD}
+      \end{center}
+    \end{figure}
+    
+Código en Matlab:
+    \lstinputlisting{Ejercicio2/incisod.m}
+    
 \end{enumerate}
-
-d) x(t/4+1/4)
 
 \section{Ejercicio 4}
 Determine si los siguientes sistemas de tiempo continuo son o no lineales, variantes en el tiempo, causales, con memoria y estables. Justifique su respuesta.
-%%
-\begin{itemize}
-  \item
-    \begin{equation}
- y(n)=
-  \left\{
-    \begin{aligned}
-      1\quad n>=0\\
-      0\quad n<0\
-    \end{aligned}
-  \right.
-  \label{escunit}
-\end{equation}
-%%
+\begin{enumerate}
+  \item  \[ y\left[n\right]\;=\;\left\{\begin{array}{lc}
+                                     1&n\geq0 \\
+                                     0&n<0 \\ 
+                                   \end{array}\right.\qquad Para\;toda\;x\left[n\right]
+\]
 Este no es el modelo de un sistema ya que no relaciona la entrada con la salida.
   \item
     \begin{equation*}
@@ -246,84 +276,84 @@ CON MEMORIA, por que depende de valores futuros.
 
 ESTABLE, ya que al probar con una señal como el escalón, la entrada y la salida es acotada.
 
-\end{itemize}
+\end{enumerate}
 
 \section{Ejercicio 5}
 
 Evalúe las siguientes integrales:
-\begin{equation}
+\[
 y(t)=\int_{-\infty }^{\infty }[3\delta (t)+e^{-(t-1)}\delta (t)+cos(2\pi t)\dot{\delta} (t)+e^{-t}\ddot{\delta }(t) ]dt
-\end{equation}
+\]
 
-\begin{equation}
+\[
 y(t)=\int_{0}^{\infty }e^{-(t-1)}\delta (t+10)dt
-\end{equation}
+\]
 
 Para la primera ecuación tenemos que gracias a la propiedad de linealidad podemos realizar esta descomposición:
 
-\begin{equation}
+\[
 y(t)=3\int_{-\infty }^{\infty }\delta (t)dt+\int_{-\infty }^{\infty }e^{-(t-1)}\delta (t)dt+\int_{-\infty }^{\infty }cos(2\pi t)\dot{\delta (t)}dt+\int_{-\infty }^{\infty }e^{-t}\ddot{\delta}(t)dt
-\end{equation}\\
+\]\\
 Sabiendo que la transformada de Laplace de delta de Dirac es:
-\begin{equation}
+\[
 L\left \{ \delta \left ( t \right ) \right \}=1
-\end{equation}\\
+\]\\
 Y que:
-\begin{equation}
+\[
 L\left \{ f(t)\delta (t-a) \right \}=\int_{0 }^{\infty }e^{-st}f(t)\delta (t-a)dt=e^{-as}f(a)
-\end{equation}\\
+\]\\
 Basándonos en esos conceptos ya nos es posible operar\\
 Utilizando la transformada de Laplace
-\begin{equation}
+\[
 3L\left \{ \delta (t) \right \}=3\ast 1=3
-\end{equation}\\
+\]\\
 Aplicando la transformada al otro termino quedaría:
-\begin{equation}
+\[
 L\left \{ e^{-(t-1)}\delta (t) \right \}
-\end{equation}\\
+\]\\
 Ayudándonos de la ecuación numero 5 tenemos que a=0 por lo tanto:\\
-\begin{equation}
+\[
 e^{-as}\cdot f(a)=e^{-0s}\cdot e^{-(0-1)}=e^{o}\cdot e^{1}=1\cdot e=e
-\end{equation}\\
+\]\\
 
 Pasando al otro termino de la ecuación tendríamos:
-\begin{equation}
+\[
 L\left \{ cos(2\pi t)\dot{\delta }(t) \right \}
-\end{equation}\\
+\]\\
 La transformada de la derivada de la función impulso va a ser cero:
-\begin{equation}
+\[
 L\left \{ \dot{\delta }(t) \right \}=0
-\end{equation}\\
+\]\\
 Aplicando la ecuación numero 5 obtendremos:
-\begin{equation}
+\[
 0\cdot cos(2\pi (0))=0\cdot 1=0
-\end{equation}\\
+\]\\
 Para nuestro ultimo termino.\\
 La tranformada de la segunda derivada de la función impulso es cero:
-\begin{equation}
+\[
 L\left \{ \ddot{\delta }(t) \right \}=0
-\end{equation}\\
+\]\\
 Evaluando con base a la ecuación 5 tendremos:
-\begin{equation}
+\[
 0\cdot e^{-0}=0\cdot 1=0
-\end{equation}\\
+\]\\
 Por ultimo sumamos nuestros resultados y nos quedaría:
-\begin{equation}
+\[
 3+e+0+0=3+e
-\end{equation}\\
+\]\\
 Finalmente nuestro resultado es:
-\begin{equation}
+\[
 \underline{3+e}
-\end{equation}\\
+\]\\
 
 Para nuestra otra función integral tendremos que a=10:
-\begin{equation}
+\[
 \left [ e^{-10}\cdot e^{-(10-1)} \right ]=e^{-10}\cdot e^{-10}\approx 0.00000000206= 0
-\end{equation}\\
+\]\\
 Finalmente este es nuestro resultado:
-\begin{equation}
+\[
 \underline{0}
-\end{equation}\\
+\]\\
 
 
 
@@ -413,48 +443,48 @@ NOTA: Se trató de que el rasgeo de las cuerdas de la guitarra sean igual en tie
 \section{Ejercicio 9}
 
 Conexión de sistemas en serie o cascada\\
-\begin{equation}
+\[
 S_{1}: y_{1}\left [ n \right ]=x_{1}\left [ n \right ]+2x_{1}\left [ n-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 S_{2}: y_{2}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]
-\end{equation}\\
+\]\\
 
 S:\\
-\begin{equation}
+\[
 x_{2}\left [ n \right ]=y_{1}\left [ n \right ]=x_{1}\left [ n \right ]+2x_{1}\left [ n-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 x_{2}\left [ n+2 \right ]=x_{1}\left [ n+2 \right ]+2x_{1}\left [ n+2-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 3x_{2}\left [ n \right ]=3x_{1}\left [ n \right ]+(3)2x_{1}\left [ n-1 \right ]
-\end{equation}\\
+\]\\
 
-\begin{equation}
+\[
 y\left [ n \right ]=y_{2}\left [ n \right ]=x_{1}\left [ n+2 \right ]+2x_{1}\left [ n+1 \right ]+3x_{1}\left [ n \right ]+6x_{1}\left [ n-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 y\left [ n \right ]=6x_{1}\left [ n-1 \right ]+3x_{1}\left [ n \right ]+2x_{1}\left [ n+1 \right ]+x_{1}\left [ n+2 \right ]
-\end{equation}\\
+\]\\
 
 Ahora sacaremos su sistema invertido\\
-\begin{equation}
+\[
 x_{1}\left [ n \right ]=y_{2}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 x_{1}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 2x_{1}\left [ n-1 \right ]=2x_{2}\left [ n-1+2 \right ]+(2)3x_{2}\left [ n-1 \right ]
-\end{equation}\\
+\]\\
 
-\begin{equation}
+\[
 x\left [ n \right ]=x_{2}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\left [ n \right ]+2x_{2}\left [ n+1 \right ]+6x_{2}\left [ n-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 x\left [ n \right ]=6x_{2}\left [ n-1 \right ]+3x_{2}\left [ n \right ]+2x_{2}\left [ n+1 \right ]+x_{2}\left [ n+2 \right ]
-\end{equation}\\
+\]\\
 
 Vemos que el sistema normal e invertido da el mismo resultado.
 
@@ -462,39 +492,39 @@ Vemos que el sistema normal e invertido da el mismo resultado.
 
 Conexión de sistemas en serie o cascada\\
 
-\begin{equation}
+\[
 S_{1}: y_{1}\left [ n \right ]=nx_{1}\left [ n \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 S_{2}: y_{2}\left [ n \right ]=x_{2}\left [ -n-1 \right ]
-\end{equation}\\
+\]\\
 
 S:\\
 
-\begin{equation}
+\[
 x_{2}\left [ n \right ]=y_{1}\left [ n \right ]=nx_{1}\left [ n \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 x_{2}\left [ -n-1 \right ]=nx_{1}\left [ -n-1 \right ]
-\end{equation}\\
+\]\\
 
-\begin{equation}
+\[
 y\left [ n \right ]=y_{2}\left [ n \right ]=nx_{1}\left [ -n-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 y\left [ n \right ]=nx_{1}\left [ -n-1 \right ]
-\end{equation}\\
+\]\\
 
 Ahora sacaremos su sistema invertido\\
-\begin{equation}
+\[
 x_{1}\left [ n \right ]=y_{2}\left [ n \right ]=x_{2}\left [ -n-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 nx_{1}\left [ n \right ]=nx_{2}\left [ -n-1 \right ]
-\end{equation}
-\begin{equation}
+\]
+\[
 x\left [ n \right ]=nx_{2}\left [ -n-1 \right ]
-\end{equation}\\
+\]\\
 
 Vemos que el sistema normal e invertido da el mismo resultado.
 
