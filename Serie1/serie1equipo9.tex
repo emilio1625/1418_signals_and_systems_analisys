@@ -215,7 +215,7 @@ Código en Matlab:
     \lstinputlisting{Ejercicio2/incisoc.m}
     \newpage
 
-  \item x(t/4+1/4)\\
+  \item $x\left(\frac{t}{4}+\frac{1}{4}\right)$\\
   \newline Nuevamente reescribamos la señal para ver de forma más clara el comportamiento que presenta: $x\left(\frac{-\left(t+1\right)}{4}\right)$. En esta nueva expresión podemos ver que la señal es retrasada 1 unidad y luego expandida 4 unidades. De nuevo, la amplitud original se conserva.
     \begin{figure}[H]
       \begin{center}
@@ -233,130 +233,80 @@ Código en Matlab:
 \section{Ejercicio 4}
 Determine si los siguientes sistemas de tiempo continuo son o no lineales, variantes en el tiempo, causales, con memoria y estables. Justifique su respuesta.
 \begin{enumerate}
-  \item  \[ y\left[n\right]\;=\;\left\{\begin{array}{lc}
+  \item  $ y\left[n\right]\;=\;\left\{\begin{array}{lc}
                                      1&n\geq0 \\
                                      0&n<0 \\ 
-                                   \end{array}\right.\qquad Para\;toda\;x\left[n\right]
-\]
+                                   \end{array}\right\} \qquad Para\;toda\;x\left[n\right]
+$\\
 Este no es el modelo de un sistema ya que no relaciona la entrada con la salida.
-  \item
-    \begin{equation*}
-y(t)=sen(x(t+1))
-    \end{equation*}
-* Lineal o no lineal
+  \item $y(t)=sen(x(t+1)) $
+  \begin{itemize}
+    \item Lineal o no lineal\\
+$ y_1(t)\;=\;sen(x_1(t+1))\\
+  y_2(t)\;=\;sen(x_2(t+1))\\
+  x_3(t)\;=\;x_1(t)+x_2(t)\\
+  y_3(t)\;=\;sen(x_3(t+1))\\
+  y_3(t)\;=\;sen(x_1(t+1)+x_2(t+1))\;\neq\;sen(x_1(t+1))+sen(x_2(t+1))
+$\\
+  \newline Este sistema no es lineal por que no cumple la propiedad de aditividad.
 
-   x1(t) = y1(t)= sen (x1(t+1))\\
-   x2(t) = y2(t)= sen (x2(t+1))\\
-   x3(t) = x1(t)+x2(t) = y3(t)=sen(x3(t+1))\\
-                         y3(t)=sen(x1(t+1)+x2(t+1))
+  \item Variante o invariante en el tiempo\\
+$ y(t-t_0)\;=\;sen(x(t-t_0+1)) \qquad $ Condición de invariabilidad\\
+$ x_1(t)=x(t-t_0) \qquad $ Proponemos una nueva señal, desplaza en el tiempo \\ 
+$ y_1(t)=sen(x_1(t+1)) $\\
+$ y_1(t)=sen(x(t-t_0+1)) $\\
+  \newline  
+  Este sistema es invariante en el tiempo por que cumple la condición de invariabilidad\\
+  \newline
+  \item Causalidad\\
+$y(0)\;=\;sen(x(1))\\
+y(-1)\;=\;sen(x(0))\\
+y(1)\;=\;sen(x(2))$\\
+  \newline
+Vemos que el sistema depende de valores futuros de la señal, por lo tanto es un sistema causal o anticipativo.\\
 
- NO LINEAL
+  \item Memoria\\
+Al depender de valores futuros, este sistema tiene memoria.\\
 
-* Variante o invariante en el tiempo
-
-  y(t-t0)=sen(x(t-t0+1)) ... A esto se debe llegar\\
-  Proponer: x1(t)=x(t-t0) --- y1(t)=sen(x1(t+1))\\
-  y1(t)=sen(x(t+1-t0))
-
-  INVARIANTE EN EL TIEMPO
-
-* Causalidad
-
-y(0)=sen(x(1))\\
-y(-1)=sen(x(0))\\
-y(1)=sen(x(2))
-
-NO CAUSAL O ANTICIPATIVO, porque depende de valores futuros.
-
-* Memoria
-
-CON MEMORIA, por que depende de valores futuros.
-
-* Estabilidad
-
-ESTABLE, ya que al probar con una señal como el escalón, la entrada y la salida es acotada.
-
+  \item Estabilidad\\
+La función seno es una función que oscila entre -1 y 1 para cualquier valor de su dominio, por que que cualquier señal, acotada o no, generará una salida acotada. De esto concluimos que la señal es estable BIBO.
+  \end{itemize}
 \end{enumerate}
 
 \section{Ejercicio 5}
 
 Evalúe las siguientes integrales:
+\begin{enumerate}
+  \item \[ y(t)=\int_{-\infty }^{\infty }[3\delta (t)+e^{-(t-1)}\delta (t)+cos(2\pi t)\dot{\delta}(t)+e^{-t}\ddot{\delta}(t)]dt \]
+
+  \item \[ y(t)=\int_{0}^{\infty }e^{-(t-1)}\delta (t+10)dt \]
+
+\end{enumerate}
+
+Para la primera ecuación tenemos que usando propiedades de la integral impropia podemos realizar esta descomposición:
+
 \[
-y(t)=\int_{-\infty }^{\infty }[3\delta (t)+e^{-(t-1)}\delta (t)+cos(2\pi t)\dot{\delta} (t)+e^{-t}\ddot{\delta }(t) ]dt
+y(t)=3\int_{-\infty }^{\infty }\delta (t)dt+\int_{-\infty }^{\infty }e^{-(t-1)}\delta (t)dt+\int_{-\infty }^{\infty }cos(2\pi t)\dot{\delta}(t)dt+\int_{-\infty }^{\infty }e^{-t}\ddot{\delta}(t)dt
 \]
-
-\[
-y(t)=\int_{0}^{\infty }e^{-(t-1)}\delta (t+10)dt
-\]
-
-Para la primera ecuación tenemos que gracias a la propiedad de linealidad podemos realizar esta descomposición:
-
-\[
-y(t)=3\int_{-\infty }^{\infty }\delta (t)dt+\int_{-\infty }^{\infty }e^{-(t-1)}\delta (t)dt+\int_{-\infty }^{\infty }cos(2\pi t)\dot{\delta (t)}dt+\int_{-\infty }^{\infty }e^{-t}\ddot{\delta}(t)dt
-\]\\
-Sabiendo que la transformada de Laplace de delta de Dirac es:
-\[
-L\left \{ \delta \left ( t \right ) \right \}=1
-\]\\
-Y que:
-\[
-L\left \{ f(t)\delta (t-a) \right \}=\int_{0 }^{\infty }e^{-st}f(t)\delta (t-a)dt=e^{-as}f(a)
-\]\\
-Basándonos en esos conceptos ya nos es posible operar\\
-Utilizando la transformada de Laplace
-\[
-3L\left \{ \delta (t) \right \}=3\ast 1=3
-\]\\
-Aplicando la transformada al otro termino quedaría:
-\[
-L\left \{ e^{-(t-1)}\delta (t) \right \}
-\]\\
-Ayudándonos de la ecuación numero 5 tenemos que a=0 por lo tanto:\\
-\[
-e^{-as}\cdot f(a)=e^{-0s}\cdot e^{-(0-1)}=e^{o}\cdot e^{1}=1\cdot e=e
-\]\\
-
-Pasando al otro termino de la ecuación tendríamos:
-\[
-L\left \{ cos(2\pi t)\dot{\delta }(t) \right \}
-\]\\
-La transformada de la derivada de la función impulso va a ser cero:
-\[
-L\left \{ \dot{\delta }(t) \right \}=0
-\]\\
-Aplicando la ecuación numero 5 obtendremos:
-\[
-0\cdot cos(2\pi (0))=0\cdot 1=0
-\]\\
-Para nuestro ultimo termino.\\
-La tranformada de la segunda derivada de la función impulso es cero:
-\[
-L\left \{ \ddot{\delta }(t) \right \}=0
-\]\\
-Evaluando con base a la ecuación 5 tendremos:
-\[
-0\cdot e^{-0}=0\cdot 1=0
-\]\\
-Por ultimo sumamos nuestros resultados y nos quedaría:
-\[
-3+e+0+0=3+e
-\]\\
-Finalmente nuestro resultado es:
-\[
-\underline{3+e}
-\]\\
-
-Para nuestra otra función integral tendremos que a=10:
-\[
-\left [ e^{-10}\cdot e^{-(10-1)} \right ]=e^{-10}\cdot e^{-10}\approx 0.00000000206= 0
-\]\\
-Finalmente este es nuestro resultado:
-\[
-\underline{0}
-\]\\
-
-
-
+Recordemos un par de propiedades del impulso y sus derivadas:
+\begin{enumerate}
+  \item $\int_{-\infty}^\infty x\left(t\right)\delta\left(t-t_0\right)\operatorname dx\;=\;x\left(t_0\right)$
+  \item $\int_a^bx\left(t\right)\delta^{\left(k\right)}\left(t\right)\operatorname dx\;=\;\left(-1\right)^{\left(k\right)}x^{\left(k\right)}\left(0\right); \qquad$ para $a<0$, $b>0$, $x^k\left(t\right)$ continua en $t=0$
+\end{enumerate}
+Con esto podemos decir que:\\
+\[ y\left(t\right) = \left(3+\;e^{-\left(t-1\right)}+cos\left(2\pi t\right)\delta\left(t\right)+\left(-1\right)\dot{e^{-t}}\right)\left|\begin{array}{l}\\t=0\end{array}\right. \]
+\[ y\left(t\right) = \left(3+\;e^{-\left(t-1\right)}+cos\left(2\pi t\right)\delta\left(t\right)+{e^{-t}}\right)\left|\begin{array}{l}\\t=0\end{array}\right. \]\\
+Evaluando $t=0$
+\[ y\left(t\right) = \left(3+\;e+cos\left(0\right)+e^0\right) \]
+\[ y\left(t\right) = \left(3+\;e+1+1\right) \]
+\[ y\left(t\right) = 5+e \]\\
+Para la segunda integral tendríamos que:
+\[ y\left(t\right)= e^{-\left(t-1\right)}\delta\left(t+10\right)\left|\begin{array}{l}\\t=-10\end{array}\right. \]\\
+Pero el intervalo en el que debemos integrar es $\left(0,\infty\right)$, dado que $\delta\left(t\right) = 0 \; \forall \; t \neq -10$ tenemos que:
+% Evaluando $t=-10$
+% \[ y\left(t\right)= e\delta\left(10\right) \]
+% Como $\delta(t) = 0 \; \forall \; t\neq 0$
+\[ y\left(t\right)= 0 \]
 
 
 
