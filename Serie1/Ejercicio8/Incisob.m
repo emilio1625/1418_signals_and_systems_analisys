@@ -1,4 +1,4 @@
 [y,Fs] = audioread('Guitar.wav');
 sound(y,Fs);
-figure(1);
 plot(y);
+axis([80000,82000,-0.7,0.7]);grid;

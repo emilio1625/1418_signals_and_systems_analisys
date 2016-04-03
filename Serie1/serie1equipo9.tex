@@ -75,7 +75,7 @@ Notaremos que la señal esta formada con la suma de dos parábolas unitarias, la
   \begin{center}
     \includegraphics[width=0.6\textwidth]{Ejercicio1/Aproximacion1}
     \caption{Primer aproximación a la señal}
-    \label{fig:Primer aproximación a la señal}
+    \label{fig:Aprox1}
   \end{center}
 \end{figure}
 
@@ -186,13 +186,13 @@ Si $x\left(t\right)$ es la que obtuvo en el Ejercicio 1, obtenga las siguientes 
 Código en Matlab:
     \lstinputlisting{Ejercicio2/incisoa.m}
 
-  \item $x\left(2t-1\right)$\\
-    \newline Para nueva señal, la señal original es contraída 2 veces su ancho original y adelantada en $\frac{1}{2}$ unidad. Esto lo podemos ver mejor si reescribimos la función anterior como $x\left(2\left(t-\frac{1}{2}\right)\right)$ De forma análoga al inciso anterior, la amplitud no se modifica.
+  \item $x\left(2t-\frac{1}{4}\right)$\\
+    \newline Para nueva señal, la señal original es contraída 2 veces su ancho original y adelantada en $\frac{1}{8}$ unidad. Esto lo podemos ver mejor si reescribimos la función anterior como $x\left(2\left(t-\frac{1}{8}\right)\right)$ De forma análoga al inciso anterior, la amplitud no se modifica.
 
     \begin{figure}[H]
       \begin{center}
         \includegraphics[width=0.5\textwidth]{Ejercicio2/IncisoB}
-        \caption{Señal contraída 2 veces}
+        \caption{Señal contraída 2 veces y adelantada $\frac{1}{8}$ de unidad}
         \label{fig:IncisoB}
       \end{center}
     \end{figure}
@@ -216,7 +216,7 @@ Código en Matlab:
     \newpage
 
   \item $x\left(\frac{t}{4}+\frac{1}{4}\right)$\\
-  \newline Nuevamente reescribamos la señal para ver de forma más clara el comportamiento que presenta: $x\left(\frac{-\left(t+1\right)}{4}\right)$. En esta nueva expresión podemos ver que la señal es retrasada 1 unidad y luego expandida 4 unidades. De nuevo, la amplitud original se conserva.
+  \newline Nuevamente reescribamos la señal para ver de forma más clara el comportamiento que presenta: $x\left(\frac{t+1}{4}\right)$. En esta nueva expresión podemos ver que la señal es adelantada 1 unidad y luego expandida 4 unidades. De nuevo, la amplitud original se conserva.
     \begin{figure}[H]
       \begin{center}
         \includegraphics[width=0.5\textwidth]{Ejercicio2/IncisoD}
@@ -236,7 +236,7 @@ Determine si los siguientes sistemas de tiempo continuo son o no lineales, varia
   \item  $ y\left[n\right]\;=\;\left\{\begin{array}{lc}
                                      1&n\geq0 \\
                                      0&n<0 \\ 
-                                   \end{array}\right\} \qquad Para\;toda\;x\left[n\right]
+                                   \end{array}\right. \quad \forall\;x\left[n\right]
 $\\
 Este no es el modelo de un sistema ya que no relaciona la entrada con la salida.
   \item $y(t)=sen(x(t+1)) $
@@ -306,89 +306,74 @@ Pero el intervalo en el que debemos integrar es $\left(0,\infty\right)$, dado qu
 % Evaluando $t=-10$
 % \[ y\left(t\right)= e\delta\left(10\right) \]
 % Como $\delta(t) = 0 \; \forall \; t\neq 0$
-\[ y\left(t\right)= 0 \]
-
-
-
+\[ y\left(t\right)= 0 \] 
 
 \section{Ejercicio 6}
 Grafique las siguientes señales:
-\begin{equation*}
-x(t)=rect(2t-0.5)
-\end{equation*}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{rectA}
-\caption{rect(2t - 0.5)}
-\label{fig:rectA}
-\end{figure}
-
-\begin{equation*}
-x(t)=rect((t-1)/2)+(t-1))
-\end{equation*}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{rectB}
-\caption{rect((t-1)/2)+(t-1)}
-\label{fig:rectB}
-\end{figure}
-
-
-
-
-
-
-
+\begin{enumerate}
+  \item $x(t)=\Pi \left(2t-\frac{1}{2}\right)$\\
+  $x(t)=\Pi \left(2\left(t-\frac{1}{4}\right)\right)\qquad$ señal adelantada $\frac{1}{4}$ de unidad y comprimida a la mitad.
+  
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{Ejercicio6/IncisoA}
+        \caption{$x(t)=\Pi \left(2t-\frac{1}{2}\right)$}
+        \label{fig:Inciso A}
+      \end{center}
+    \end{figure}
+    Código en Matlab:
+    \lstinputlisting{Ejercicio6/incisoa.m}
+    
+  \item $x\left(t\right)=\Pi\left(\frac{t-1}{2}\right)+\Pi\left(t-1\right)\quad$ dos señales $\Pi$, ambas adelantadas 1 unidad, una de ellas expandida al doble de su tamaño original y sumadas.
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{Ejercicio6/IncisoB}
+        \caption{$x\left(t\right)=\Pi\left(\frac{t-1}{2}\right)+\Pi\left(t-1\right)$}
+        \label{fig:Inciso B}
+      \end{center}
+    \end{figure}
+    Código en Matlab:
+    \lstinputlisting{Ejercicio6/incisob.m}
+    
+\end{enumerate}
 
 \section{Ejercicio 8}
-Capture al menos dos señales físicas reales y preséntelas en una  gráfica e identifique el tipo de señal en algún segmento de la misma.\\
+Capture al menos dos señales físicas reales y preséntalas en una  gráfica e identifique el tipo de señal en algún segmento de la misma.
 
-\begin{itemize}
-\item La primera señal es un silbido humano.\\
-Código de Matlab:\\
-\begin{lstlisting}[frame=single]
->> [y,Fs] = audioread('Silb.wav');
->> sound(y,Fs);
->> figure(2);
->> plot(y);
-\end{lstlisting}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.6\textwidth]{SilbGraphic}
-\caption{Silbido humano}
-\label{fig:SilbGraphic}
-\end{figure}
-
+\begin{enumerate}
+  \item La primera señal es un silbido humano.
+    \begin{figure}[H]
+      \begin{center}
+        \includegraphics[width=0.55\textwidth]{Ejercicio8/Silbido}
+        \caption{Silbido}
+        \label{fig:Slib}
+      \end{center}
+    \end{figure}
+    
 Esta es una señal de tiempo continuo por que la señal puede tomar cualquier valor en cualquier instante de tiempo. \\
-Es una señal aperiódica, ya que no se repite en intervalos regulares \\
-Es una señal aleatoria, ya que no se puede predecir mediante una función matemática.\\
-Notamos en la gráfica que la señal el totalmente impredecible, ya que siempre parece tomar diferentes valores de frecuencia.
+Es una señal periódica, ya que (al menos en apariencia a este nivel de acercamiento) se repite en intervalos regulares \\
+Es una señal determinista, se puede predecir su comportamiento mediante una función matemática.\\
+\newline Código en Matlab
+    \lstinputlisting{Ejercicio8/incisoa.m}
 
-\item La segunda señal corresponde al sonido de las cuerdas de una guitarra acústica.\\
-Código de Matlab:\\
-\begin{lstlisting}[frame=single]
->> [y,Fs] = audioread('Guitar.wav');
->> sound(y,Fs);
->> figure(1);
->> plot(y);
-\end{lstlisting}
+\item La segunda señal corresponde al sonido de las cuerdas de una guitarra acústica.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{GuitarGraphic}
-\caption{Sonido de las cuerdas de una guitarra acústica}
-\label{fig:GuitarGraphic}
+  \begin{center}
+    \includegraphics[width=0.55\textwidth]{Ejercicio8/Guitarra}
+    \caption{Sonido de las cuerdas de una guitarra acústica}
+    \label{fig:Guitar}
+  \end{center}
 \end{figure}
 
 Esta es una señal de tiempo continuo por que la señal puede tomar cualquier valor en cualquier instante de tiempo. \\
 Es una señal aperiódica, ya que no se repite en intervalos regulares \\
 Es una señal aleatoria, ya que no se puede predecir mediante una función matemática.\\
-NOTA: Se trató de que el rasgeo de las cuerdas de la guitarra sean igual en tiempo e intensidad, resultó un poco difícil, el mejor de los casos qes que hubiera salido igual la gráfica en intervalos regulares, para que la señal sea periódica y determinística.
+NOTA: Se trató de que el rasgueo de las cuerdas de la guitarra sean igual en tiempo e intensidad, resultó un poco difícil, el mejor de los casos es que hubiera salido igual la gráfica en intervalos regulares, para que la señal sea periódica y determinística.\\
+\newline Código en Matlab
+    \lstinputlisting{Ejercicio8/incisoa.m}
 
-\end{itemize}
+\end{enumerate}
 
 \section{Ejercicio 9}
 
@@ -436,7 +421,7 @@ x\left [ n \right ]=x_{2}\left [ n \right ]=x_{2}\left [ n+2 \right ]+3x_{2}\lef
 x\left [ n \right ]=6x_{2}\left [ n-1 \right ]+3x_{2}\left [ n \right ]+2x_{2}\left [ n+1 \right ]+x_{2}\left [ n+2 \right ]
 \]\\
 
-Vemos que el sistema normal e invertido da el mismo resultado.
+Vemos que el sistema invertido da el mismo resultado.
 
 \section{Ejercicio 10}
 
@@ -477,14 +462,5 @@ x\left [ n \right ]=nx_{2}\left [ -n-1 \right ]
 \]\\
 
 Vemos que el sistema normal e invertido da el mismo resultado.
-
-
-
-
-
-
-
-
-
 
 \end{document}
