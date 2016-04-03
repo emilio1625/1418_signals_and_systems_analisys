@@ -2,11 +2,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
-%\usepackage{textcomp}
+\usepackage{textcomp}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage[framed,numbered,autolinebreaks]{mcode}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{color}
@@ -46,87 +49,170 @@
 
 \section[Ejercicio 1]{Ejercicio 1}
 
-Obtenga una expresión en términos de funciones singulares la señal de tiempo continuo x(t) mostrada en la figura 1.1. Utilice la parábola $u_{-3}(t)$.
+Obtenga una expresión en términos de funciones singulares la señal de tiempo continuo x(t) mostrada en la \texttt{figura 1.1}. Utilice la parábola $u_{-3}(t)$.
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{Ejercicio1/SignalEjemplo}
+    \includegraphics[width=0.5\textwidth]{Ejercicio1/SignalEjemplo}
     \caption{Ejercicio 1}
     \label{fig:Ejercicio 1}
   \end{center}
 \end{figure}
 
-Al ver la señal podemos ver que esta formada por dos parábolas unitarias una de ellas invertida en el tiempo y ampliada por un factor de 2.
+Si recordamos que la señal parábola unitaria se define como:
+
+\[ u_{-3}(t) = \left\{
+              \begin{array}{lc}
+                \frac{t^2}2&t\geq0\\
+                0&t<0
+              \end{array}
+            \right. 
+\]
+
+Notaremos que la señal esta formada con la suma de dos parábolas unitarias, la primera de ellas invertida en el tiempo y ampliada por un factor de 2, la segunda no sufre ninguna transformación.
 
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{Ejercicio1/Aproximacion1}
+    \includegraphics[width=0.6\textwidth]{Ejercicio1/Aproximacion1}
     \caption{Primer aproximación a la señal}
     \label{fig:Primer aproximación a la señal}
   \end{center}
 \end{figure}
 
-Vemos que esta señal se acerca a la mostrada en la \texttt{figura 1.1} pero debemos limitarla a los lados desde $ -1 $ hasta $ 2 $ esto podemos lograrlo con una función $ \Pi $ expandida 3 veces y retrasada media unidad (consideremos que la función $ \Pi $ expandida valdría $ 1 $ desde $ -1.5 $ hasta $ 1.5 $).
+Código en matlab:
+
+\lstinputlisting{Ejercicio1/aprox1.m}
+
+Vemos que esta señal se acerca a la mostrada en la \texttt{figura 1.1} pero debemos limitarla a los lados desde $ -1 $ hasta $2$ esto lo conseguimos multiplicando la señal anterior con la señal $\Pi$ definida como:
+
+\[ \Pi(t) = \left\{
+              \begin{array}{lc}
+                1&\left|t\right|<\frac12\\
+                0&\left|t\right|>\frac12
+              \end{array}
+            \right.
+\]
+
+Ésta señal debe ser expandida 3 veces y retrasada media unidad (consideremos que la función $\Pi$ expandida valdría $1$ desde $-1.5$ hasta $1.5$).
+
+\begin{figure}[H]
+  \begin{center}
+    
+    \begin{subfigure}{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=1\linewidth]{Ejercicio1/Aproximacion2a}
+        \caption{Señal $\Pi(t)$ expandida y retrasada}
+        \label{fig:Aprox2a}
+      \end{center}
+    \end{subfigure}%    
+    \begin{subfigure}{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=1\linewidth]{Ejercicio1/Aproximacion2b}
+        \caption{Multiplicación de ambas señales}
+        \label{fig:Aprox2b}
+      \end{center}
+    \end{subfigure}
+    
+    \caption{Segunda aproximación a la señal}
+    \label{fig:Aprox2}
+  \end{center}
+\end{figure}
+
+
+Código en matlab
+
+\lstinputlisting{Ejercicio1/aprox2.m}
+
+Ahora necesitamos generar el valor constante que toma la señal en sus extremos, esto lo podemos generar con la suma de otra señal $\Pi$ invertida en amplitud y desplazada hacia arriba una unidad.
+
+\begin{figure}[H]
+  \begin{center}
+    
+    \begin{subfigure}{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=1\linewidth]{Ejercicio1/Aproximacion3a}
+        \caption{Señal $\Pi(t)$ expandida, retrasada, invertida en amplitud y trasladada una unidad hacia arriba}
+        \label{fig:Aprox3a}
+      \end{center}
+    \end{subfigure}%    
+    \begin{subfigure}{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=1\linewidth]{Ejercicio1/Aproximacion3b}
+        \caption{Suma de ambas señales}
+        \label{fig:Aprox3b}
+      \end{center}
+    \end{subfigure}
+    
+    \caption{Tercera aproximación a la señal}
+    \label{fig:Aprox3}
+  \end{center}
+\end{figure}
+
+Así la señal de la \texttt{figura 1.4b} es la señal expresada como funciones singulares.
+
+\[ x(t)=\lbrack2u_{-3}(-t)+u_{-3}(t)\rbrack\times\Pi\left(\frac{t-{\displaystyle\frac12}}3\right)-(\Pi(\frac{t-{\displaystyle\frac12}}3)-1) \] 
+
+Código en matlab:
+
+\begin{lstlisting}
+function x = x1(t)
+ x = ( ( 2*pu(-t) + pu(t) ) .* rect( (t.-0.5) ./ 3 ) ) .- ( rect( (t.-0.5) ./ 3 ) .- 1);
+         
+t = -15 : 0.005 : 15;
+plot(t,x(t));
+axis([-3,3,0,2]);
+grid();
+xlabel("tiempo");
+ylabel("x(t)"); 
+\end{lstlisting}
+
+
 
 \section{Ejercicio 2}
 Si x(t) es la que obtuvo en el Ejercicio 1, obtenga las siguientes señales:\\
-a) x(t/4)
+\begin{enumerate}
+  \item x(t/4)\\
+Para esta gráfica la señal sufre una transformación en el tiempo, como el valor del coeficiente $\alpha$ de $t$ es igual a $\frac{1}{4}$, la señal se verá expandida en un factor inverso, es decir la veremos cuatro veces más ancha.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{SignalA}
-\caption{Señal A}
-\label{fig:SignalA}
-\end{figure}
+% \begin{figure}
+%   \begin{center}
+%     \includegraphics{Ejercicio2/IncisoA}
+%     \caption{Señal expandida 4 veces}
+%     \label{fig:IncisoA}
+%   \end{center}
+% \end{figure}
 
-b) x(2t-1/4)
+  \item x(2t-1/4)\\
+En esta nueva señal, la señal original es contraída 4 veces su ancho original y comienza en $ \frac{1}{4} $
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{SignalB}
-\caption{Señal B}
-\label{fig:SignalB}
-\end{figure}
 
-c) x(-t/4-1)
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{SignalC}
-\caption{Señal C}
-\label{fig:SignalC}
-\end{figure}
+  \item x(-t/4-1)
+\end{enumerate}
 
 d) x(t/4+1/4)
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{SignalD}
-\caption{Señal D}
-\label{fig:SignalD}
-\end{figure}
-
-
 
 \section{Ejercicio 4}
 Determine si los siguientes sistemas de tiempo continuo son o no lineales, variantes en el tiempo, causales, con memoria y estables. Justifique su respuesta.
 %%
 \begin{itemize}
-\item \begin{equation}
+  \item
+    \begin{equation}
  y(n)=
- \left\{
-  \begin{aligned}
-   1\quad n>=0\\
-   0\quad n<0\
-  \end{aligned}
- \right.
-\label{escunit}
+  \left\{
+    \begin{aligned}
+      1\quad n>=0\\
+      0\quad n<0\
+    \end{aligned}
+  \right.
+  \label{escunit}
 \end{equation}
 %%
 Este no es el modelo de un sistema ya que no relaciona la entrada con la salida.
-\item  \begin{equation*}
+  \item
+    \begin{equation*}
 y(t)=sen(x(t+1))
-\end{equation*}
+    \end{equation*}
 * Lineal o no lineal
 
    x1(t) = y1(t)= sen (x1(t+1))\\
