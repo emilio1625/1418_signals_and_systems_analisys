@@ -1,0 +1,134 @@
+    1  sudo dnf remove gnome-weather gnome-notes gnome-clocks
+    2  sudo dnf update
+    3  reboot
+    4  sudo dnf remove gnome-
+    5  exit
+    6  su -c 'dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+    7  sudo dnf -y install gstreamer1-libav gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer-ffmpeg xine-lib-extras xine-lib-extras-freeworld k3b-extras-freeworld gstreamer-plugins-bad gstreamer-plugins-bad-free-extras gstreamer-plugins-bad-nonfree gstreamer-plugins-ugly gstreamer-ffmpeg mencoder
+    8  sudo dnf -y install unrar unzip zip p7zip p7zip-plugins geany geary polari icedtea-web gnome-shell-extension-common dconf-editor gnome-tweak-tool gtk-murrine-engine* libreoffice-langpack-es kernel-headers kernel-devel
+    9  dnf groupinstall "Development Tools" && dnf groupinstall "Development Libraries"
+   10  su -c 'dnf -y groupinstall "Development Tools" && dnf -y groupinstall "Development Libraries"'
+   11  poweroff
+   12  sudo dnf install latexila octave menulibre 
+   13  sudo dnf copr enable -y rommon/telegram
+   14  sudo dnf install telegram-desktop
+   15  cd /etc/yum.repos.d/
+   16  wget http://download.opensuse.org/repositories/home:Horst3180/Fedora_23/home:Horst3180.repo
+   17  sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
+   18  sudo wget http://download.opensuse.org/repositories/home:Horst3180/Fedora_23/home:Horst3180.repo
+   19  sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
+   20  sudo dnf update
+   21  sudo dnf install -y arc-theme numix-* cheese gnome-shell-extension-common dconf-editor gnome-tweak-tool gtk-murrine-engine* libreoffice libreoffice-langpack-es gnome-shell-extension-user-theme gstreamer1-libav vlc gnome-tweak-tool freetype-freeworld java-1.8.0-openjdk java-1.8.0-openjdk-devel icedtea-web spotify powertop tlp smartmontools  gnome-shell-extension-drive-menu libappindicator-gtk3 libindicator-gtk3 libappindicator libindicator
+   22  echo "Xft.lcdfilter: lcddefault" > ~/.Xresources
+   23  chmod 666 ~/.Xresources
+   24  sudo dnf copr enable numix/numix
+   25  exit
+   26  sudo dnf install gnome-tweak-tool 
+   27  sudo dnf remove evolution
+   28  sudo dnf install hunspell hunspell-es
+   29  sudo dnf install axel
+   30  reboot
+   31  systemctl status tlp
+   32  systemctl status tlp-sleep
+   33  systemctl stop tlp
+   34  systemctl status tlp-sleep
+   35  systemctl status tlp
+   36  sudo gedit /etc/default/tlp 
+   37  lspci
+   38  sudo dnf install psd
+   39  sudo dnf search psd
+   40  sudo dnf search profile sync
+   41  sudo dnf install profile-sync-deamon
+   42  sudo dnf install profile-sync-daemon
+   43  sudo dnf -y install profile-sync-daemon
+   44  locate psd.conf
+   45  sudo locate psd.conf
+   46  locate
+   47  sudo locate
+   48  sudo locate -h
+   49  sudo locate
+   50  locate psd.conf
+   51  sudo gedit /etc/psd.conf 
+   52  sudo dnf install lollypop
+   53  sudo dnf update
+   54  sudo dnf search lollypop
+   55  sudo dnf install lollypop
+   56  sudo gedit /etc/gdm/custom.conf 
+   57  exit
+   58  sudo dnf copr enable gnumdk/lollypop
+   59  sudo nautilus /usr/share/octave/4.0.1/imagelib/
+   60  sudo nautilus /usr/share/applications/
+   61  exit
+   62  grep -E 'inst\.zram=(on|1)' /proc/cmdline > /dev/null
+   63  grep -E 'inst\.zram=(on|1)' /proc/cmdline
+   64  cat /proc/cmdline
+   65  df
+   66  systemctl status zram
+   67  systemctl is-enabled zram
+   68  sudo systemctl enable zram
+   69  sudo systemctl start zram
+   70  systemctl status zram
+   71  swapon -s
+   72  free -h
+   73  psd p
+   74  ls /etc/modules-load.d/
+   75  sudo ls /etc/modules-load.d/
+   76  sudo ls -la /etc/modules-load.d/
+   77  sudo gedit /etc/modules-load.d/overlay.comf
+   78  sudo gedit /etc/modules-load.d/overlay.conf
+   79  sudo ls -la /etc/modules-load.d/
+   80  modprobe overlay
+   81  sudo modprobe overlay
+   82  psd p
+   83  cat /usr/libexec/anaconda/zramswapon 
+   84  getconf _NPROCESSORS_ONLN
+   85  echo mem_total_kb
+   86  mem_total_kb
+   87  grep MemTotal /proc/meminfo | grep -E --only-matching '[[:digit:]]+'
+   88  free -h
+   89  swapon -s
+   90  sudo gedit /usr/libexec/anaconda/zramswapon 
+   91  sudo systemctl enable zram.service
+   92  sudo systemctl status anaconda-direct.service 
+   93  cat /usr/sbin/zramctl 
+   94  clear
+   95  zramctl 
+   96  man zramctl 
+   97  ls /lib/systemd/z
+   98  ls /lib/systemd/
+   99  psd p
+  100  sudo systemctl enable psd-resync psd 
+  101  reboot
+  102  lscpu
+  103  free -h
+  104  swapon -s
+  105  lscpu
+  106  locate find
+  107  locate state
+  108  lscpu
+  109  clear
+  110  exit
+  111  sudo dnf install dosbox
+  112  lscpu
+  113  powertop 
+  114  sudo powertop 
+  115  systemctl status tlp
+  116  sudo systemctl stop tlp*
+  117  sudo gedit /etc/default/tlp
+  118  sudo systemctl start tlp*
+  119  systemctl status tlp
+  120  sudo powertop 
+  121  lscpu
+  122  glxgears 
+  123  systemctl status zram.service 
+  124  systemctl enable zram.service 
+  125  lscpu
+  126  cat /proc/cpuinfo 
+  127  sudo reboot
+  128  cat /usr/sbin/zramctl 
+  129  sudo gedit /usr/libexec/anaconda/zramswapon 
+  130  cat /etc/rc.d/rc.local 
+  131  sudo chmod +x /etc/rc.d/rc.local 
+  132  reboot
+  133  sudo dnf update
+  134  history >> history.txt

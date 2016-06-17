@@ -1,0 +1,196 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{color}
+\usepackage{mcode}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+%%%%%%%%%
+%%Incluir No. de equipo, integrantes y tema asignados
+\author{Miembro1\\Miembro2\\Miembro3\\Equipo 20}
+\title{Tema asignado}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead[]{}
+\chead[]{}
+\rfoot{\thepage}
+\lfoot[]{}
+\cfoot[]{}
+
+\renewcommand\headrule
+{{\color[RGB]{98,36,35}%
+		\hrule height 2pt
+		width\headwidth
+		\vspace{1.3pt}%
+		\hrule height 1pt
+		width\headwidth
+	}}
+	\addto\captionsspanish{\def\tablename{Tabla}}%imprime Tabla en lugar de Cuadro
+	%%
+	\spanishdecimal{.}
+
+
+\begin{document}
+\thispagestyle{fancy}
+\maketitle
+\tableofcontents
+\newpage
+\setcounter{chapter}{1}
+\section[Introducción]{Introducción}
+
+\begin{equation}
+\int_{t_{1}}^{t_{2}}\delta(t)dt =
+\left\{
+\begin{aligned}
+1\quad t_{1}<0<t_{2}\\
+0\quad otro \:valor
+\end{aligned}
+\right.
+\end{equation}
+%%
+%%
+\[
+\delta(t)=0\qquad t\neq0
+\]
+\subsection{Escalón Unitario}
+Escalón Unitario(Ec. \ref{escunit}) $u(t), u_{-1}(t)$\\
+%%
+\begin{equation}
+ u(t)=
+ \left\{
+  \begin{aligned}
+   1\quad t>0\\
+   0\quad t<0\
+  \end{aligned}
+ \right.
+\label{escunit}
+\end{equation}
+%%
+\subsection{Rampa}
+Rampa(Ec. \ref{rampa}) $ramp(t)$, $r(t)$, $u_{-2}(t)$\\
+
+\begin{equation}
+ramp(t)=
+\left\{
+\begin{aligned}
+t\quad t\geq0\\
+0\quad t<0\
+\end{aligned}
+\right.
+\left\}=
+\begin{aligned}
+\int_{-\infty}^{t}u(\lambda)d\lambda=tu(t)
+\end{aligned}
+\right.
+\label{rampa}
+\end{equation}
+
+\subsection{Signo}
+Función Signum(Ec. \ref{signo}) $sgn(t)$\\
+
+\begin{equation}
+sgn(t)=
+\left\{
+\begin{aligned}
+1\quad t>0\\
+0\quad t<0\
+\end{aligned}
+\right.
+\left\}=
+\begin{aligned}
+2u(t)-1
+\end{aligned}
+\right.
+\label{signo}
+\end{equation}
+
+%
+\subsection{Triangulo}
+Función Triángulo(Ec. \ref{triang}) $tri(t)$
+
+\begin{equation}
+tri(t)=
+\left\{
+\begin{aligned}
+1-|t|\quad |t|<1\\
+0\qquad\:|t|\geq0\
+\end{aligned}
+\right.
+\label{triang}
+\end{equation}
+
+
+
+%
+\subsection{Señal Sinc}
+Función $sinc(t)$ (Ec. \ref{sinc})\\
+\begin{equation}
+sinc(t)=\frac{sen(\pi t)}{\pi t}
+\label{sinc}
+\end{equation}
+%
+\subsection{Exponencial Generalizada}
+Exponencial Real
+\begin{equation*}
+x(t)=Ce^{^{rt}}
+\end{equation*}
+
+En donde $C$ y $r$ son reales:
+\begin{itemize}
+\item Exponencial creciente: \quad $C$ es constante y $r >0$
+\item  Exponencial decreciente: $C$ es constante y $r <0$
+\item Constante: \qquad \qquad \qquad$C$ es constante y $r =0$
+\end{itemize}
+Exponencial Compleja
+\begin{itemize}
+\item Exponencial compleja: \quad$C$ es constante y $r=j\omega$
+\item Exponencial defasada: \quad$C=C_{1}e^{j\theta}$ y $r =j\omega$
+\item Exponencial defasada creciente o decreciente: \quad $C=C_{1}e^{j\theta}$ y $r =r_{1}+j\omega$
+\end{itemize}
+
+%
+\section{Señales periódicas en tiempo continuo}
+Una señal es periódica si se repite en intervalos regules, es decir, si cumple con
+\[x(t)=x(t+mT)  \qquad m \: entero\]
+
+en donde
+\[T=\frac{1}{f}\\  \]
+\[\omega=\frac{2\pi}{T}  \]
+
+siendo \\
+$T$ el periodo de la señal\\
+$f$ la frecuencia de la señal\\
+$\omega$ la frecuencia angular de la señal
+
+%
+%Tren de impulsos $comb(t)$
+\vspace*{1cm}
+\subsection{Ejemplo de convolución en tiempo discreto}
+\[
+x[n]=\delta[n]+3\delta[n-3]
+\]
+\[
+h[n]=u[n]-u[n-3]
+\]
+Aplicando la propiedad de asociatividad
+\[
+y[n]=x[n]*h[n]=\delta[n]*h[n]+\delta[n-3]*h[n]
+\]
+Aplicando la propiedad de la convolución con la muestra unitaria
+\[
+y[n]=h[n]+h[n-3]=u[n]-u[n-3]+u[n-3]-u[n-6]
+\]
+\begin{lstlisting}[frame=single]
+>> t=-3:.01:5;
+>> plot(t,s1((2*t)+1))
+>> grid
+>> axis([-3 5 -.5 3.5 ])
+\end{lstlisting}
+\end{document}

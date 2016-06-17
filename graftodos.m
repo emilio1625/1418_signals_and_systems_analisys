@@ -1,0 +1,14 @@
+subplot(421);plot(t,pu(t));grid;
+axis([-5.5,5.5, 0,5]);title("Grafica 1");
+subplot(422);plot(t,pu(t)-pu(t.-2));grid;
+axis([-5.5,5.5, 0,5]);title("Grafica 2");
+subplot(423);plot(t,2*pu(-t)+pu(t)-pu(t.-2));grid;
+axis([-5.5,5.5, 0,5]);title("Grafica 3");
+subplot(424);plot(t,2*pu(-t)+pu(t)-pu(t.-2)-2*ru(t.-2));grid;
+axis([-5.5,5.5, 0,5]);title("Grafica 4");
+subplot(425);plot(t,-2*pu(-t.-1)+2*pu(-t)+pu(t)-pu(t.-2)-2*ru(t.-2));grid;
+axis([-5.5,5.5, 0,5]);title("Grafica 5");
+subplot(426);plot(t,-2*pu(-t.-1)+2*pu(-t)+pu(t)-pu(t.-2)-2*ru(t.-2)-eu(t.-2));grid;
+axis([-5.5,5.5, 0,2]);title("Grafica 6");
+subplot(427);plot(t,-2*ru(-t.-1)-2*pu(-t.-1)+2*pu(-t)+pu(t)-pu(t.-2)-2*ru(t.-2)-eu(t.-2));grid;
+axis([-5.5,5.5, 0,2]);title("Grafica 7");
